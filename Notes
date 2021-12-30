@@ -1,0 +1,6 @@
+
+git branch branch-name      -> To create a new branch. 
+git branch -d branch-name   -> To delete a branch. 
+git branch -D branch-name   -> For delete a branch. 
+git branch -m new-branch    -> To rename a current branch. 
+git clone --mirror          -> It is bare repo meant only for migration. 

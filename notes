@@ -1,0 +1,80 @@
+git log --name-only   -> show the committed file
+git log  -> show author, commit message, time
+git log --oneline   -> to display in one line - compact size
+git checkout -b branch-name  -> to create new branch and switch
+git branch branch-name -> to create new branch
+git checkout branch-name -> to switch to branch
+git branch -> show list of branches
+git branch -d branch-name -> delete branch
+
+
+merge:
+git merge another-branch 
+fast-forward
+no-fast-forward
+
+
+git remote add origin https://   -> origin - alias name
+git push origin master   -> origin - alias,  master - branch name
+
+git clone https  -> Full download of project
+
+git fetch origin master  (in fetch, remote commit is stored separately and need to merge separately)
+
+git pull origin master (combination of fetch and merge)
+
+git branch -a (to show all branches including remote)
+
+git commit -am "message" file-name   (a is used to automatically stage )
+
+
+fork:
+create a parallel copy of project without impacting original project
+no need of create branch
+first fork the repository and then to pull request to merge the change.
+
+
+rebasing:
+adding our own changes on top of master branch
+git rebase master  (first move to the branch and the give source branch as master)
+
+
+interactive rebasing:
+used to interatviley rebase the commits. For ex: change from 4 commits to 1 commit.
+git rebase -i HEAD~4 (last 4 commits)
+file will be opened , use squash instead of pick.
+another file will be opened and give the commit message.
+
+
+cherry picking:
+git cherry-pick commit-hash
+Used to include selected commit from master branch to working branch.
+
+
+resetting and reverting:
+git revert commit-id   -> reverse the commit . it helps to undo changes and keep commit history.
+git reset --soft HEAD~1    (1 refers to 1st latest commit. thorugh reversed, it still have copy. it can see by git status)
+git reset --hard HEAD~1   (it doesnot have copy of reversed commit and not show in git status)
+
+
+Stashing:
+
+to move changes from staging area to stash area
+stash area is like queue to add multiple changes
+
+git stash list   -> shows list of stash
+git stash show stash{0}  -> shows detailed information on stash like file name.
+git stash pop (to move from stash to staging area)
+
+
+reflog:
+
+git reflog  -> gives additional info like commit status
+
+
+
+
+
+
+
+
