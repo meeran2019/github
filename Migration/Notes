@@ -1,0 +1,10 @@
+Option1: Using Git Commit Mirror Push:
+
+    1. git clone --mirror source-repo-name
+    2. Change the origin reference to new branch
+    3. git push --mirror destination-repo-name
+
+Limitation:
+    1. Commit history and branches are moved but no PR request is moved.
+
+-------------------------------------------------------------------------------------------------------------
