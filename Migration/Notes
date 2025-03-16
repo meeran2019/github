@@ -6,7 +6,7 @@ Option1: Using Git Commit Mirror Push:
 
 Limitation:
     1. Commit history and branches are moved but no PR request is moved.
-    2. Metadata is not moved, so ssues or PR is not moved.
+    2. Metadata is not moved, so issues or PR is not moved.
 
 ========================================================================================================
 
@@ -46,6 +46,28 @@ Option2: Using GitHub Enterprise Importer Tool:
                 Follow up tasks required. (Configure security)
                 Delayed code search functionality. (Reindexing takes couple of hours)
                 Ruleset configured for org can cause migrations to fail. (Ifrequire may disable rulesets)
+
+--------------------------------------------------------------------------------------------------------
+
+Migration Process:
+
+Preparation:
+
+        1. Create the PAT in developer settings (if organizational owner)
+        2. Add to gh gei grant-migrator-role (If not an organization owner then Allows an organization admin to grant a USER or TEAM the migrator role for a single GitHub organization. The migrator role allows the role 
+  assignee to perform migrations into the target organization)
+        3. Refer the page https://docs.github.com/en/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products
+        4. Set the environment variable GH_SOURCE_PAT env variable or --github-source-pat  (Source Org)
+        5. Set the environment variable GH_PAT env variable or --github-target-pat         (Target Org)
+
+Migration:
+
+        1. gh gei migrate-repo --github-source-org <github-source-org>  --github-target-org <github-target-org>  --source-repo <source-repo> 
+                    Minimum option required.
+        2. It migrated the issues, PR. Additional issue is created which contains the migration status. But with users shows as mannequin user because which require to map old user with new user.
+        3. Sometimes releases cause size issue --skip-releases  (It skips releases when migrating)
+        
+--------------------------------------------------------------------------------------------------------
 
 
 
