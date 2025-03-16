@@ -1,10 +1,58 @@
 Option1: Using Git Commit Mirror Push:
 
-    1. git clone --mirror source-repo-name
+    1. git clone --mirror source-org/source-repo-name
     2. Change the origin reference to new branch
-    3. git push --mirror destination-repo-name
+    3. git push --mirror destination-org/destination-repo-name
 
 Limitation:
     1. Commit history and branches are moved but no PR request is moved.
+    2. Metadata is not moved, so ssues or PR is not moved.
 
--------------------------------------------------------------------------------------------------------------
+========================================================================================================
+
+Option2: Using GitHub Enterprise Importer Tool:
+
+    Installation:
+        1. Install Github CLI  (https://cli.github.com/)
+        2. gh auth login (Login to github and goes for authentication)
+        3. Install Github Importer extension. (https://github.com/github/gh-gei)
+
+--------------------------------------------------------------------------------------------------------
+
+    Preparing to Migrate:
+
+        1. What is required to migrate? means how many repos, repo size etc.
+        2. Prepare pre migrations steps (dry-run) and post migration steps like configure security.
+        3. How long migrations time takes.
+        4. Delete the dry-run repos.
+
+    GHEC to EMU Migrations:
+
+        1. What is Migrated:
+                Git source, PR, Issues, Milestones, Wiki (Excluding attachements), Projects (classic) at repo level, Commit Comments, Active Webhook (must be reenabled), Repository Topics, Repository Settings, Releases, User history, Atatchements
+
+        2. What is NOT Migrated:
+                Any projects, Dependabot, Commit status checks, Webhook secrets, Repository stars/watchers, Github Apps and App Install, Rulesets, Tag protection rules, User access to repo, User profile, SSH keys, PAT, Signing Keys.
+
+        3. Limitation of GitHub:
+                2GB size limit for single commit.
+                255 byte limit for Git reference.
+                100MB file size limit. 
+
+        4. Limitation of Github Enterprise Importer:
+                10GB size limit for git repo. (git sizer can use to check)
+                10GB limit for metadata.
+                Git LFS objects not migrated. (Importer can migrate repository which use LFS but not LFS object itself)
+                Follow up tasks required. (Configure security)
+                Delayed code search functionality. (Reindexing takes couple of hours)
+                Ruleset configured for org can cause migrations to fail. (Ifrequire may disable rulesets)
+
+
+
+        
+
+
+
+
+
+        
