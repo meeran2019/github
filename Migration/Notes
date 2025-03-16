@@ -60,7 +60,9 @@ Preparation:
         4. Set the environment variable GH_SOURCE_PAT env variable or --github-source-pat  (Source Org)
         5. Set the environment variable GH_PAT env variable or --github-target-pat         (Target Org)
 
-Migration:
+--------------------------------------------------------------------------------------------------------
+
+Single Repo Migration:
 
         1. gh gei migrate-repo --github-source-org <github-source-org>  --github-target-org <github-target-org>  --source-repo <source-repo> 
                     Minimum option required.
@@ -69,12 +71,63 @@ Migration:
         
 --------------------------------------------------------------------------------------------------------
 
+Multi Repo Migration:
 
+        1. gh gei generate-script --github-source-org <github-source-org>  --github-target-org <github-target-org> 
+                Minimum option required.
 
+        2. By default generate powershell script "migrate.ps1". Require to install powershell in linux or macos.
+
+        3. To install powershell in macos, follow the page https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-macos?view=powershell-7.5
+
+        4. chmod +x migrate.ps1  (Change to executable)
+
+        5. Generated script contains the following sections.
+
+                    Get the environment variables:
+
+                    For all repos, generate the script with  "--queue-only" (Only queues the migration, does not wait for it to finish):
+                        gh gei generate-script --github-source-org <github-source-org>  --github-target-org <github-target-org>   --queue-only 
+
+                    Wait for the migration:
+                        gh gei wait-for-migration --migration-id
+
+                    Summary:
+                        Which contains the no of seccess and failure repos report.
+
+        6. Can edit the script to keep only required no of repos.
+    
+--------------------------------------------------------------------------------------------------------
+
+MANNEQUIN:
+
+        So far we have migrated only the repos, metadata but not users.
+        After repo migration, will show users with mannequin. It means, it still showing old system user name.
+        It requires mapping of user in old system to new system.
+
+    Option1:
+            It is manual process.
+            Go to settings ->Import/Export -> Select Mannequin user and map to user in current system ->Send Invite to accept.
+            
+    Option2:
+            Using GitHub Enterprise Importer tool.
+
+            Generate the Mannequin in target system: (Default generate mannequins.csv file)
+                    gh gei generate-mannequin-csv --github-target-org <github-target-org>  
+
+            Generated file contains csv header with mannequin-user,mannequin-id,target-user
+
+            Update the "target-user" in generated csv file.
+
+            Reclaim the mannequin:
+                    gh gei reclaim-mannequin --github-target-org <github-target-org> --skip-invitation --csv <file-name>
+                    --skip-invitation is supported only in EMU which doesnot send invite but Reclaim mannequins immediately
+
+--------------------------------------------------------------------------------------------------------
+
+            
+            
         
-
-
-
 
 
         
