@@ -125,6 +125,33 @@ MANNEQUIN:
 
 --------------------------------------------------------------------------------------------------------
 
+Migrate Org to another Org EMU:
+
+        In target account:  Your enterprise -> Settings -> Organizations -> New Organizations (Create new Organization)
+
+        Settings -> Developer Settings -> PAT -> Configure SSO -> Authorize with target Organization.
+
+        gh gei migrate-org  --github-source-org <github-source-org> --github-target-org <github-target-org> --github-target-enterprise <github-target-enterprise> 
+                Minimum required to pass. 
+
+        gh gei migrate-org  --github-source-org <github-source-org> --github-target-org <github-target-org> --github-target-enterprise <github-target-enterprise>  --queue-only
+                Only queues the migration, does not wait for it to finish. Use the wait-for-migration command to subsequently wait for it to finish and view the status.
+
+---------------------------------------------------------------------------------------------
+
+Additional Migration Tools:
+
+            https://josh-ops.com/posts/github-migration-tools/
+
+
+
+            
+
+
+
+
+        
+                
             
             
         
